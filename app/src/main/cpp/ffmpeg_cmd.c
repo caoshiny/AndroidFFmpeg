@@ -49,7 +49,7 @@
 #include "ffmpeg.h"
 JNIEXPORT jint
 JNICALL
-Java_com_shiny_ffmpegdemo_MainActivity_runFFMpegCMD(JNIEnv *env, jclass obj, jobjectArray commands) {
+Java_com_shiny_ffmpegdemo_utils_FFmpegCmd_runFFMpegCMD(JNIEnv *env, jclass obj, jobjectArray commands) {
     int argc = (*env)->GetArrayLength(env, commands);
     char *argv[argc];
     int i;

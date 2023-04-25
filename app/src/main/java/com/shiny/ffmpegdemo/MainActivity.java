@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.shiny.ffmpegdemo.databinding.ActivityMainBinding;
 import com.shiny.ffmpegdemo.utils.CMDUtils;
+import com.shiny.ffmpegdemo.utils.FFmpegCmd;
 
 import java.io.File;
 import java.util.Arrays;
@@ -18,10 +19,6 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
 
     private final String TAG = "MainActivity";
-
-    static {
-        System.loadLibrary("ffmpeg");
-    }
 
     private ActivityMainBinding binding;
     private Button button;
@@ -48,17 +45,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         super.run();
-                        int a = runFFMpegCMD(CMDUtils.splitCmd(cmd));
+                        int a = FFmpegCmd.runFFMpegCMD(CMDUtils.splitCmd(cmd));
                         Log.i(TAG, "run: " + "视频转换完成！");
                     }
                 }.start();
             }
         });
     }
-
-    /**
-     * A native method that is implemented by the 'ffmpegdemo' native library,
-     * which is packaged with this application.
-     */
-    public native int runFFMpegCMD(String[] cmd);
 }
